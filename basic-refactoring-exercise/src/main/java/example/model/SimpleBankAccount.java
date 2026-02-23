@@ -26,6 +26,7 @@ public class SimpleBankAccount implements BankAccount {
         if (checkUser(userID)) {
             this.balance += amount;
         }
+        printBalance();
     }
 
     @Override
@@ -33,6 +34,7 @@ public class SimpleBankAccount implements BankAccount {
         if (checkUser(userID) && isWithdrawAllowed(amount)) {
             this.balance -= (amount +  WITHDRAWAL_FEE);
         }
+        printBalance();
     }
 
     private boolean isWithdrawAllowed(final double amount){
@@ -41,5 +43,9 @@ public class SimpleBankAccount implements BankAccount {
 
     private boolean checkUser(final int id) {
         return this.holder.id() == id;
+    }
+
+    private void printBalance() {
+        System.out.println("Current balance is " + this.balance);
     }
 }
