@@ -13,4 +13,43 @@ package tdd;
  *   - Introduce methods in the interface in order to make the tests pass.
  *   - Refactor
  */
-public interface CircularQueue { }
+public interface CircularQueue { 
+    /**
+     * Aggiunge un elemento alla coda.
+     * Se la coda è piena, sovrascrive l'elemento più vecchio.
+     */
+    void enqueue(int value);
+    
+    /**
+     * Rimuove e ritorna l'elemento più vecchio della coda.
+     * Se la coda è vuota, lancia un'eccezione.
+     */
+    int dequeue();
+    
+    /**
+     * Ritorna l'elemento più vecchio senza rimuoverlo.
+     * Se la coda è vuota, lancia un'eccezione.
+     */
+    int peek();
+    
+    /**
+     * Controlla se la coda è vuota.
+     */
+    boolean isEmpty();
+    
+    /**
+     * Controlla se la coda è piena.
+     */
+    boolean isFull();
+    
+    /**
+     * Ritorna il numero di elementi attuali nella coda.
+     */
+    int size();
+    
+    /**
+     * Ritorna la capacità massima della coda.
+     */
+    int capacity();
+
+}
