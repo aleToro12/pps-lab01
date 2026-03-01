@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class MinMaxStackImpl implements MinMaxStack {
     private ArrayList<Integer> stack;
+    private int min;
+    private int max;
 
     public MinMaxStackImpl() {
         this.stack = new ArrayList<>();
@@ -12,45 +14,51 @@ public class MinMaxStackImpl implements MinMaxStack {
     @Override
     public void push(int value) {
         stack.add(value);
+        min = stack.isEmpty() ? value : Math.min(min, value);
+        max = stack.isEmpty() ? value : Math.max(max, value);
     }
 
     @Override
     public int pop() {
-        if (stack.isEmpty()) {
-            throw new IllegalStateException("Stack is empty");
-        }
+        ensureNotEmpty();
         return stack.remove(getLastIndex());
     }
 
     @Override
     public int peek() {
-        if (stack.isEmpty()) {
-            throw new IllegalStateException("Stack is empty");
-        }
+        ensureNotEmpty();
         return stack.get(getLastIndex());
     }
 
     @Override
     public int getMin() {
-        return 0;
+        ensureNotEmpty();
+        return this.min;
     }
 
     @Override
     public int getMax() {
-        return 0;
+        ensureNotEmpty();
+        return this.max;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return stack.isEmpty();
     }
 
     @Override
     public int size() {
-        return 0;
+        return stack.size();
     }
 
     private int getLastIndex() {
         return stack.size() - 1;
+    }
+
+    private void ensureNotEmpty() {
+        if (stack.isEmpty()) {
+            throw new IllegalStateException("Stack is empty");
+        }
     }
 }
